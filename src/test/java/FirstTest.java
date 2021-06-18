@@ -21,11 +21,10 @@ public class FirstTest {
     public void myFirstTest() {
         driver.navigate().to("http://google.pl");
 
-        driver.findElement(By.name("q")).sendKeys("TTMS");
+        driver.findElement(By.name("q")).sendKeys("TTMS to najlepsza firma na świecie");
         driver.findElement(By.name("q")).submit();
 
         String pageTitle = driver.getTitle();
-
         assertTrue(pageTitle.contains("TTMS"));
     }
 
