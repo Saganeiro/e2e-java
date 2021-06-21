@@ -1,13 +1,18 @@
+package practice.automationtesting.in.tests;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertTrue;
+import java.time.Duration;
 
-public class FirstTest {
+import static org.testng.AssertJUnit.assertEquals;
+
+public class successfulLoginTest {
 
     private WebDriver driver;
 
@@ -15,23 +20,20 @@ public class FirstTest {
     public void beforeTest() {
         System.setProperty("webdriver.chrome.driver", "C:/drivers/chromedriver.exe");
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.navigate().to("http://practice.automationtesting.in/");
     }
 
     @Test
-    public void myFirstTest() {
-        driver.navigate().to("http://google.pl");
-
-        driver.findElement(By.name("q")).sendKeys("TTMS");
-        driver.findElement(By.name("q")).submit();
-
-        String pageTitle = driver.getTitle();
-
-        assertTrue(pageTitle.contains("TTMS"));
+    public void loginWithCorrectCredentials() {
     }
+
 
     @AfterMethod
     public void afterTest() {
+
         driver.close();
         driver.quit();
     }
+
 }
