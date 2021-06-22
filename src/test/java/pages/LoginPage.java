@@ -1,10 +1,10 @@
-package practice.automationtesting.in.pages;
+package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import practice.automationtesting.in.DriverManager;
+import waits.WaitForElement;
 
 public class LoginPage {
 
@@ -20,21 +20,18 @@ public class LoginPage {
     @FindBy(xpath = "//ul[@class='woocommerce-error']/li[1]")
     private WebElement messageLabel;
 
-    private WebDriver driver;
-
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+    public LoginPage() {
+        PageFactory.initElements(DriverManager.getWebDriver(), this);
     }
 
-    public void typeIntoUserNameField() {
-        usernameField.clear();
-        usernameField.sendKeys("NotExistingUser@test.pl");
+    public void typeIntoUserNameField(String username) {
+        WaitForElement.waitUntilElementIsVisible(usernameField);
+        usernameField.sendKeys(username);
     }
 
-    public void typeIntoUserPasswordField() {
-        passwordField.clear();
-        passwordField.sendKeys("NotProperPassword");
+    public void typeIntoUserPasswordField(String password) {
+        WaitForElement.waitUntilElementIsVisible(passwordField);
+        passwordField.sendKeys(password);
     }
 
     public void clickOnLoginButton() {
