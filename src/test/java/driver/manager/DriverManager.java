@@ -1,14 +1,14 @@
-package practice.automationtesting.in;
+package driver.manager;
 
+import driver.BrowserFactory;
+import driver.BrowserType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeClass;
-
-import static io.github.bonigarcia.wdm.config.DriverManagerType.CHROME;
 
 public class DriverManager {
 
+    private static final BrowserType BROWSER_TYPE = BrowserType.CHROME;
     private static WebDriver driver;
 
     @BeforeClass
@@ -22,16 +22,17 @@ public class DriverManager {
     public static WebDriver getWebDriver() {
 
         if (driver == null) {
-            WebDriverManager.getInstance(CHROME).setup();
-            driver = new ChromeDriver();
+            driver = BrowserFactory.getBrowser(BROWSER_TYPE);
         }
 
         return driver;
     }
 
-    public static void disposeDriver(){
+    public static void disposeDriver() {
         driver.close();
-        driver.quit();
+        if (!BROWSER_TYPE.equals(BrowserType.FIREFOX)){
+            driver.quit();
+        }
         driver = null;
     }
 }

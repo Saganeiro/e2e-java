@@ -3,7 +3,7 @@ package waits;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import practice.automationtesting.in.DriverManager;
+import driver.manager.DriverManager;
 
 import java.time.Duration;
 

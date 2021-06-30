@@ -2,7 +2,7 @@ package tests;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import practice.automationtesting.in.DriverManager;
+import driver.manager.DriverManager;
 import practice.automationtesting.in.DriverUtilities;
 
 public class TestBase {

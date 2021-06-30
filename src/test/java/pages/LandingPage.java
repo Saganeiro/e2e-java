@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import practice.automationtesting.in.DriverManager;
+import driver.manager.DriverManager;
 import waits.WaitForElement;
 
 public class LandingPage {
