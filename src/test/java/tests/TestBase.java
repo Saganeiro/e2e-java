@@ -5,6 +5,8 @@ import org.testng.annotations.BeforeMethod;
 import driver.manager.DriverManager;
 import practice.automationtesting.in.DriverUtilities;
 
+import static url.AppURLs.APPLICATION_URL;
+
 public class TestBase {
 
 
@@ -12,7 +14,7 @@ public class TestBase {
     public void beforeTest() {
         DriverManager.getWebDriver();
         DriverUtilities.setInitialConfiguration();
-        DriverUtilities.navigateToPage("http://practice.automationtesting.in/");
+        DriverUtilities.navigateToPage(APPLICATION_URL);
     }
 
 

@@ -1,12 +1,16 @@
 package pages;
 
+import driver.manager.DriverManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import driver.manager.DriverManager;
 import waits.WaitForElement;
 
 public class LoginPage {
+
+    private Logger logger = LogManager.getRootLogger();
 
     @FindBy(name = "username")
     private WebElement usernameField;
@@ -25,17 +29,23 @@ public class LoginPage {
     }
 
     public void typeIntoUserNameField(String username) {
+        logger.info("Trying to click username field");
         WaitForElement.waitUntilElementIsVisible(usernameField);
         usernameField.sendKeys(username);
+        logger.info("Username typed into password field");
     }
 
     public void typeIntoUserPasswordField(String password) {
+        logger.info("Trying to click password field");
         WaitForElement.waitUntilElementIsVisible(passwordField);
         passwordField.sendKeys(password);
+        logger.info("Password typed into password field");
     }
 
     public void clickOnLoginButton() {
+        logger.info("Trying to click login button");
         loginButton.click();
+        logger.info("Clicked on login button");
     }
 
     public String getWarningMessage() {
