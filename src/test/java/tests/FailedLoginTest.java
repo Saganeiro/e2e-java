@@ -6,7 +6,7 @@ import pages.LoginPage;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-public class FailedLoginTest extends TestBase {
+public class FailedLoginTest extends BaseTest {
 
     @Test
     public void loginWithInCorrectCredentials() {

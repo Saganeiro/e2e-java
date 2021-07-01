@@ -21,6 +21,7 @@ public class DriverManager {
     private DriverManager() {
     }
 
+
     public static WebDriver getWebDriver() {
 
         if (driver == null) {

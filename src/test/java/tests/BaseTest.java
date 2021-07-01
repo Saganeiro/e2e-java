@@ -2,17 +2,19 @@ package tests;
 
 import configuration.ConfigurationProperties;
 import configuration.PropertiesLoader;
+import driver.BrowserType;
 import driver.manager.DriverManager;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
 import practice.automationtesting.in.DriverUtilities;
 
 import java.util.Properties;
 
 import static url.AppURLs.APPLICATION_URL;
 
-public class TestBase {
+public class BaseTest {
 
     @BeforeClass
     public void beforeClass() {
@@ -22,7 +24,7 @@ public class TestBase {
     }
 
     @BeforeMethod
-    public void beforeTest() {
+    public void beforeTest(@Optional BrowserType browserType) {
         DriverManager.getWebDriver();
         DriverUtilities.setInitialConfiguration();
         DriverUtilities.navigateToPage(APPLICATION_URL);

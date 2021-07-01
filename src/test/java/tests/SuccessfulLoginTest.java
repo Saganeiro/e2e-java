@@ -2,9 +2,7 @@ package tests;
 
 import org.testng.annotations.Test;
 
-import static org.testng.AssertJUnit.assertEquals;
-
-public class SuccessfulLoginTest extends TestBase {
+public class SuccessfulLoginTest extends BaseTest {
 
 
     @Test
