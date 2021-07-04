@@ -4,8 +4,9 @@ import configuration.ConfigurationProperties;
 import configuration.PropertiesLoader;
 import driver.BrowserType;
 import driver.manager.DriverManager;
+import io.qameta.allure.Step;
 import org.testng.annotations.*;
-import practice.automationtesting.in.DriverUtilities;
+import utils.DriverUtilities;
 
 import java.util.Properties;
 
@@ -13,6 +14,7 @@ import static url.AppURLs.APPLICATION_URL;
 
 public class BaseTest {
 
+    @Step("Loading configuration from configuration.properties/TestNG")
     @BeforeClass
     public void beforeClass() {
         PropertiesLoader propertiesLoader = new PropertiesLoader();
@@ -20,6 +22,7 @@ public class BaseTest {
         ConfigurationProperties.setProperties(propertiesFromFile);
     }
 
+    @Step("Setting up browser to: {browserType} and navigating to Home Page")
     @Parameters("browser")
     @BeforeMethod
     public void beforeTest(@Optional BrowserType browserType) {
@@ -29,7 +32,7 @@ public class BaseTest {
         DriverUtilities.navigateToPage(APPLICATION_URL);
     }
 
-
+    @Step("Disposing browser")
     @AfterMethod
     public void afterTest() {
         DriverManager.disposeDriver();

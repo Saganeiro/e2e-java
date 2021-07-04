@@ -2,11 +2,12 @@ package driver.manager;
 
 import driver.BrowserFactory;
 import driver.BrowserType;
+import driver.listeners.WebDriverEventListenerRegistrar;
 import org.openqa.selenium.WebDriver;
+import static driver.BrowserType.FIREFOX;
 
 import static configuration.TestRunProperties.getBrowserToRun;
 import static configuration.TestRunProperties.getIsRemoteRun;
-import static io.github.bonigarcia.wdm.config.DriverManagerType.FIREFOX;
 
 public class DriverManager {
 
@@ -26,6 +27,9 @@ public class DriverManager {
         }else {
             browser = new BrowserFactory(browserType, getIsRemoteRun()).getBrowser();
         }
+
+        browser = WebDriverEventListenerRegistrar.registerWebDriverEventListener(browser);
+
         browserThread.set(browserType);
         driverThread.set(browser);
     }
