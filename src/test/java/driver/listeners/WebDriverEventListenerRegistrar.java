@@ -10,5 +10,4 @@ public class WebDriverEventListenerRegistrar {
         DriverEventListener driverEventListener = new DriverEventListener();
         return eventFiringWebDriver.register(driverEventListener);
     }
-
 }

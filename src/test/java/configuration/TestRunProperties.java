@@ -15,4 +15,8 @@ public class TestRunProperties {
     public static String getGridUrl() {
         return ConfigurationProperties.getProperties().getProperty("grid.url");
     }
+
+    public static String getAllUrl() {
+        return ConfigurationProperties.getProperties().getProperty("app.url");
+    }
 }

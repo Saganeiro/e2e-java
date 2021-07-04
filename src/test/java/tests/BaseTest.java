@@ -10,7 +10,7 @@ import utils.DriverUtilities;
 
 import java.util.Properties;
 
-import static url.AppURLs.APPLICATION_URL;
+import static RelativeURLs.URLs.APPLICATION_URL;
 
 public class BaseTest {
 
