@@ -1,9 +1,8 @@
 package driver.manager;
 
 import driver.BrowserFactory;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import driver.BrowserType;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.BeforeClass;
 
 import static configuration.TestRunProperties.getBrowserToRun;
 import static configuration.TestRunProperties.getIsRemoteRun;
@@ -11,31 +10,40 @@ import static io.github.bonigarcia.wdm.config.DriverManagerType.FIREFOX;
 
 public class DriverManager {
 
-    private static WebDriver driver;
+    private static ThreadLocal<WebDriver> driverThread = new ThreadLocal<>();
+    private static ThreadLocal<BrowserType> browserThread = new ThreadLocal<>();
 
-    @BeforeClass
-    public static void setupClass() {
-        WebDriverManager.chromedriver().setup();
-    }
 
     private DriverManager() {
     }
 
+    public static void setWebDriver(BrowserType browserType) {
+        WebDriver browser = null;
+
+        if (browserType == null) {
+            browserType = getBrowserToRun();
+            browser = new BrowserFactory(browserType, getIsRemoteRun()).getBrowser();
+        }else {
+            browser = new BrowserFactory(browserType, getIsRemoteRun()).getBrowser();
+        }
+        browserThread.set(browserType);
+        driverThread.set(browser);
+    }
 
     public static WebDriver getWebDriver() {
 
-        if (driver == null) {
-            driver = new BrowserFactory(getBrowserToRun(), getIsRemoteRun()).getBrowser();
+        if (driverThread.get() == null) {
+            throw new IllegalStateException("WebDriver Instance was null! Please create instance of WebDriver using setWebDriver!");
         }
-
-        return driver;
+        return driverThread.get();
     }
 
     public static void disposeDriver() {
-        driver.close();
-        if (!getBrowserToRun().equals(FIREFOX)) {
-            driver.quit();
+        driverThread.get().close();
+        if (!browserThread.get().equals(FIREFOX)) {
+            driverThread.get().quit();
         }
-        driver = null;
+        driverThread.remove();
+        browserThread.remove();
     }
 }
