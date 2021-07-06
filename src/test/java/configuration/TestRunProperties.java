@@ -8,7 +8,7 @@ public class TestRunProperties {
         return BrowserType.valueOf(ConfigurationProperties.getProperties().getProperty("browser"));
     }
 
-    public static boolean getIsRemoteRun(){
+    public static boolean getIsRemoteRun() {
         return Boolean.parseBoolean(ConfigurationProperties.getProperties().getProperty("is.remote.run"));
     }
 
